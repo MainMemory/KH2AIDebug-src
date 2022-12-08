@@ -154,7 +154,7 @@ void trap_puts(intptr_t* args)
 void trap_vector_dump(intptr_t* args)
 {
 	auto vec = reinterpret_cast<float*>(GetAIDataPtr((int)args[0]));
-	printf("%s = (%f, %f, %f, %f)\n", reinterpret_cast<const char*>(args[1]), vec[0], vec[1], vec[2], vec[3]);
+	printf("%s = (%f, %f, %f, %f)\n", reinterpret_cast<const char*>(GetAIDataPtr((int)args[1])), vec[0], vec[1], vec[2], vec[3]);
 }
 
 void trap_assert(intptr_t* args)
@@ -164,7 +164,7 @@ void trap_assert(intptr_t* args)
 
 void trap_obj_dump(intptr_t* args)
 {
-	printf("[%s] OBJ#dump : %s\n", (const char*)*YS::VM::Current, (char*)GetAIDataPtr((int)args[0]) + 4);
+	printf("[%s] OBJ#dump : %s\n", (const char*)*YS::VM::Current, "NOT IMPLEMENTED");
 }
 
 void trap_target_set_after_player(intptr_t* args)
@@ -201,7 +201,7 @@ extern "C"
 		traptbl[0][25].Func = trap_putf;
 		traptbl[0][26].Func = trap_puts;
 		traptbl[0][60].Func = trap_assert;
-		//traptbl[1][122].Func = trap_obj_dump;
+		traptbl[1][122].Func = trap_obj_dump;
 		traptbl[1][163].Func = trap_target_set_after_player;
 		traptbl[1][246].Func = trap_target_clear_after_player;
 		GetVarPtr(YS::VM::Current, execfunc + 0x2B);
