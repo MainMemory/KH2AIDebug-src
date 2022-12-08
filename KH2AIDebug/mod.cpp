@@ -164,7 +164,7 @@ void trap_assert(intptr_t* args)
 
 void trap_obj_dump(intptr_t* args)
 {
-	printf("[%s] OBJ#dump : %s\n", (const char*)*YS::VM::Current, "NOT IMPLEMENTED");
+	printf("[%s] OBJ#dump : %s\n", (const char*)*YS::VM::Current, (const char*)GetAIDataPtr(*(int*)((char*)GetAIDataPtr(*(int*)((char*)GetAIDataPtr((int)args[0]) + 4)) + 8)) + 8);
 }
 
 void trap_target_set_after_player(intptr_t* args)
